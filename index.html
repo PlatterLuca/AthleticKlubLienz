@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Athletic Klub Lienz – Coming Soon</title>
-    <meta name="description" content="Athletic Klub Lienz is coming soon. Stay tuned for our rebranding." />
+    <title>Athletic Klub Lienz</title>
+    <meta name="description" content="Athletic Klub Lienz – Wir sind jetzt ein offizieller Verein." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet" />
 
     <style>
         *, *::before, *::after {
@@ -26,7 +26,6 @@
             overflow: hidden;
         }
 
-        /* Subtle CRT scan lines */
         body::after {
             content: "";
             position: fixed;
@@ -35,25 +34,13 @@
                 0deg,
                 transparent,
                 transparent 3px,
-                rgba(0, 0, 0, 0.04) 3px,
-                rgba(0, 0, 0, 0.04) 4px
+                rgba(0, 0, 0, 0.05) 3px,
+                rgba(0, 0, 0, 0.05) 4px
             );
             pointer-events: none;
             z-index: 10;
         }
 
-        /* Vignette pulse — fades in after typing */
-        #vignette {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.07) 0%, transparent 70%);
-            pointer-events: none;
-            opacity: 0;
-            z-index: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        /* ── Centre wrapper ── */
         #stage {
             position: relative;
             display: flex;
@@ -62,99 +49,127 @@
             justify-content: center;
             text-align: center;
             z-index: 1;
+            padding: 2rem;
 
             opacity: 0;
-            transform: scale(0.92);
-            animation: fadeInScale 1s ease-out 0s forwards;
+            transform: scale(0.93);
+            animation: fadeInScale 1s ease-out 0.1s forwards;
         }
 
         @keyframes fadeInScale {
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* ── Main club name ── */
+        #name-row {
+            position: relative;
+            display: inline-block;
+            line-height: 1;
+        }
+
         #main-text {
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(36px, 5vw, 72px);
+            font-size: clamp(32px, 5.5vw, 68px);
             font-weight: 700;
             color: #fff;
             letter-spacing: 4px;
             text-transform: uppercase;
             white-space: pre;
-            position: relative;
-            line-height: 1;
         }
 
-        /* Glow transition on new name reveal */
-        #main-text.glow {
-            transition: text-shadow 0.6s ease;
-            text-shadow:
-                0 0 8px rgba(255,255,255,0.10),
-                0 0 15px rgba(255,255,255,0.04);
-        }
-
-        /* ── Cursor ── */
-        #cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1em;
-            background: #fff;
-            vertical-align: text-bottom;
-            margin-left: 2px;
-            animation: blink 0.6s step-end infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0; }
-        }
-
-        /* ── Underline ── */
         #underline {
             position: absolute;
-            bottom: -4px;
+            bottom: -5px;
             left: 50%;
             right: 50%;
-            height: 3px;
+            height: 2px;
             background: rgba(255, 255, 255, 0.6);
             border-radius: 2px;
-            transition: left 0.8s ease, right 0.8s ease;
+            transition: left 0.9s ease, right 0.9s ease;
         }
 
-        /* ── Coming Soon ── */
-        #coming-soon {
+        #tagline {
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(18px, 2.2vw, 32px);
+            font-size: clamp(11px, 1.4vw, 15px);
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 10px;
             text-transform: uppercase;
-            margin-top: 40px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            margin-top: 32px;
 
             opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 1.2s ease, transform 1.2s ease;
+            transform: translateY(14px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
-        #coming-soon.visible {
-            opacity: 1;
-            transform: translateY(0);
+        #tagline.visible { opacity: 1; transform: translateY(0); }
+
+        #message {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(12px, 1.35vw, 15px);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+            line-height: 1.75;
+            margin-top: 14px;
+            max-width: 520px;
+
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1s ease 0.2s, transform 1s ease 0.2s;
+        }
+
+        #message.visible { opacity: 1; transform: translateY(0); }
+
+        #message strong {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 700;
+        }
+
+        #site-link {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(13px, 1.7vw, 19px);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-top: 30px;
+            padding: 11px 26px;
+            border: 2px solid rgba(255, 255, 255, 0.45);
+            border-radius: 4px;
+            display: inline-block;
+
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 1s ease 0.4s, transform 1s ease 0.4s,
+                        border-color 0.25s, background 0.25s;
+        }
+
+        #site-link.visible { opacity: 1; transform: translateY(0); }
+
+        #site-link:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.07);
         }
     </style>
 </head>
 <body>
-    <div id="vignette"></div>
 
     <div id="stage">
-        <!-- Club name + inline cursor -->
-        <div style="position: relative; display: inline-block;">
-            <span id="main-text">Athletic BinBlau</span><span id="cursor"></span>
+        <div id="name-row">
+            <span id="main-text">Athletic BinBlau</span>
             <div id="underline"></div>
         </div>
 
-        <!-- Coming Soon -->
-        <div id="coming-soon">Coming Soon</div>
+        <div id="tagline">Wir sind jetzt offiziell</div>
+
+        <div id="message">
+            Aus Athletic BinBlau wird der <strong>Athletic Klub Lienz</strong>
+        </div>
+
+        <a id="site-link" href="https://AthleticKlubLienz.com" target="_blank">
+            AthleticKlubLienz.com
+        </a>
     </div>
 
     <script>
@@ -162,59 +177,45 @@
         const PREFIX     = "Athletic ";
         const OLD_SUFFIX = "BinBlau";
         const NEW_SUFFIX = "Klub Lienz";
+        const DEL_MS     = 130;
+        const TYPE_MS    = 100;
 
-        const CHAR_DELETE_MS = 133;   // ≈ 4 frames @ 30fps
-        const CHAR_TYPE_MS   = 100;   // ≈ 3 frames @ 30fps
+        const mainText = document.getElementById("main-text");
+        const underline= document.getElementById("underline");
+        const tagline  = document.getElementById("tagline");
+        const message  = document.getElementById("message");
+        const siteLink = document.getElementById("site-link");
 
-        const mainText   = document.getElementById("main-text");
-        const cursor     = document.getElementById("cursor");
-        const underline  = document.getElementById("underline");
-        const comingSoon = document.getElementById("coming-soon");
-        const vignette   = document.getElementById("vignette");
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
 
         async function run() {
-            // --- Phase 1: Fade in + show old name ---
-            // (handled by CSS animation on #stage)
-            await sleep(1000); // fade in
-
-            // --- Phase 2: Hold ---
-            await sleep(1000);
-
-            // --- Phase 3: Delete "BinBlau" char by char ---
-            for (let i = OLD_SUFFIX.length; i >= 0; i--) {
-                mainText.textContent = PREFIX + OLD_SUFFIX.slice(0, i);
-                if (i > 0) await sleep(CHAR_DELETE_MS);
-            }
-
-            // --- Phase 4: Pause with blinking cursor ---
+            await sleep(1100);
             await sleep(900);
 
-            // --- Phase 5: Type "Klub Lienz" char by char ---
-            for (let i = 1; i <= NEW_SUFFIX.length; i++) {
-                mainText.textContent = PREFIX + NEW_SUFFIX.slice(0, i);
-                await sleep(CHAR_TYPE_MS);
+            for (let i = OLD_SUFFIX.length; i >= 0; i--) {
+                mainText.textContent = PREFIX + OLD_SUFFIX.slice(0, i);
+                if (i > 0) await sleep(DEL_MS);
             }
 
-            // --- Phase 6: Reveal — hide cursor, show underline, glow ---
-            cursor.style.display = "none";
-            mainText.classList.add("glow");
-            vignette.style.opacity = "1";
+            await sleep(800);
 
-            // Expand underline from centre outward
-            await sleep(50); // let browser paint first
+            for (let i = 1; i <= NEW_SUFFIX.length; i++) {
+                mainText.textContent = PREFIX + NEW_SUFFIX.slice(0, i);
+                await sleep(TYPE_MS);
+            }
+
+            await sleep(50);
             underline.style.left  = "0";
             underline.style.right = "0";
 
-            // --- Phase 7: "COMING SOON" fades in ---
-            await sleep(600 + 400); // reveal hold + delay
-            comingSoon.classList.add("visible");
+            await sleep(700);
+            tagline.classList.add("visible");
+            await sleep(300);
+            message.classList.add("visible");
+            await sleep(200);
+            siteLink.classList.add("visible");
         }
 
-        // Wait for fonts to load, then start
         document.fonts.ready.then(run);
     })();
     </script>
